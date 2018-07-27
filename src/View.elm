@@ -11,7 +11,7 @@ view : Model -> Html Msg
 view model =
     styled div
         [ height (px ( toFloat model.windowSize.height) )
-        , backgroundColor (hex "a0a0a0")
+--        , backgroundColor (hex "a0a0a0")
         , displayFlex
         , alignItems center
         , justifyContent center
@@ -20,10 +20,10 @@ view model =
         [ styled div
             [ width (pct 50)
             , height (pct 100)
-            , backgroundColor (hex "a0a0ff")
+--            , backgroundColor (hex "a0a0ff")
             , displayFlex
             , alignItems center
-            , justifyContent spaceAround
+            , justifyContent center
             , flexDirection column
             , Css.Media.withMedia
                 [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth (px 1000) ] ]
@@ -32,7 +32,7 @@ view model =
             []
             [ styled div
                 [ width (pct 80)
-                , backgroundColor (hex "a0ffa0")
+--                , backgroundColor (hex "a0ffa0")
                 , displayFlex
                 , textAlign center
                 , justifyContent center
@@ -45,15 +45,22 @@ view model =
                     then text (toString model.lastDirection)
                     else text (toString model.direction)
                 ]
+            , spacing
             , styled div
                 [ width (pct 20)
                 , backgroundColor (hex "f0f0f0")
-                , borderRadius (px 120)
+                , borderRadius (px 20)
                 , displayFlex
                 , textAlign center
                 , justifyContent center
                 , alignItems center
                 , fontSize (vw 8)
+                , color
+                    (if isWaiting model
+                        then if model.correctGuess
+                            then hex "30a030"
+                            else hex "a03030"
+                        else hex "a0a0a0")
                 , fontFamily monospace
                 ]
                 []
@@ -61,6 +68,7 @@ view model =
                     then text (if model.correctGuess then "✔" else "✘")
                     else text "?"
                 ]
+            , spacing
             , styled div
                 [ width (pct 80)
                 , height (pct 40)
@@ -75,7 +83,11 @@ view model =
                     [ width (pct 40)
                     , height (pct 100)
                     , fontSize (vw 8)
---                    , backgroundColor (hex "ffffa0")
+                    , borderRadius (px 20)
+                    , boxShadow3 (px 7) (px 10) (hex "f0f0f0")
+                    , borderColor (hex "a0a0f0")
+                    , backgroundColor (hex "a0a0ff")
+                    , color (rgba 255 255 255 0.6)
                     ]
                     [ onClick (DirectionClicked Left)
                     , Html.Styled.Attributes.disabled (isWaiting model)
@@ -85,7 +97,11 @@ view model =
                     [ width (pct 40)
                     , height (pct 100)
                     , fontSize (vw 8)
---                    , backgroundColor (hex "ffffa0")
+                    , borderRadius (px 20)
+                    , boxShadow3 (px 7) (px 10) (hex "f0f0f0")
+                    , borderColor (hex "f0a0a0")
+                    , backgroundColor (hex "ffa0a0")
+                    , color (rgba 255 255 255 0.6)
                     ]
                     [ onClick (DirectionClicked Right)
                     , Html.Styled.Attributes.disabled (isWaiting model)
@@ -94,6 +110,14 @@ view model =
                 ]
             ]
         ]
+
+
+spacing =
+    styled div
+        [ height (pct 5)
+        ]
+        []
+        []
 
 
 isWaiting : Model -> Bool
