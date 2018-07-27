@@ -42,8 +42,24 @@ view model =
                 ]
                 []
                 [ if isWaiting model
-                    then text (if model.correctGuess then "✔" else "✘")
+                    then text (toString model.lastDirection)
                     else text (toString model.direction)
+                ]
+            , styled div
+                [ width (pct 20)
+                , backgroundColor (hex "f0f0f0")
+                , borderRadius (px 120)
+                , displayFlex
+                , textAlign center
+                , justifyContent center
+                , alignItems center
+                , fontSize (vw 8)
+                , fontFamily monospace
+                ]
+                []
+                [ if isWaiting model
+                    then text (if model.correctGuess then "✔" else "✘")
+                    else text "?"
                 ]
             , styled div
                 [ width (pct 80)

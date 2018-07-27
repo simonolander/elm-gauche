@@ -11,6 +11,7 @@ type Direction =
 
 type alias Model =
     { direction: Direction
+    , lastDirection: Direction
     , correctGuess: Bool
     , windowSize: Size
     , directionClickedTime: Time

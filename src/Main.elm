@@ -24,6 +24,7 @@ init =
     let
         model =
             { direction = Left
+            , lastDirection = Left
             , windowSize = Size 0 0
             , correctGuess = True
             , directionClickedTime = -1000

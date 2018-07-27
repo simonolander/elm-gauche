@@ -10,6 +10,7 @@ update msg model =
         NewDirection direction ->
             ( { model
               | direction = direction
+              , lastDirection = model.direction
               }
             , Cmd.none
             )
