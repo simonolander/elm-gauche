@@ -29,3 +29,23 @@ translateDirection language direction =
                     "Izquierda"
                 Right ->
                     "Derecha"
+
+
+getFlagPath language =
+    case language of
+        English ->
+            "/assets/flags/gb.svg"
+        Swedish ->
+            "/assets/flags/se.svg"
+        French ->
+            "/assets/flags/fr.svg"
+        Spanish ->
+            "/assets/flags/es.svg"
+
+
+allLanguages =
+    [ French
+    , Swedish
+    , English
+    , Spanish
+    ]

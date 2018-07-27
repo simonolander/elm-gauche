@@ -6,7 +6,7 @@ import Html.Styled exposing (..)
 import Html.Styled.Events exposing (onClick)
 import Html.Styled.Attributes
 import Model exposing (..)
-import Translation exposing (translateDirection)
+import Translation exposing (..)
 
 view : Model -> Html Msg
 view model =
@@ -22,7 +22,6 @@ view model =
         [ styled div
             [ width (pct 100)
             , height (pt 80)
---            , backgroundColor (hex "000000")
             , displayFlex
             , flexDirection row
             , alignItems center
@@ -30,43 +29,21 @@ view model =
             , justifyContent center
             ]
             []
-            [ styled img
-                [ height (if model.language == French then pt 60 else pt 45)
-                , width (if model.language == French then pt 80 else pt 60)
-                , marginRight (pt 20)
-                , borderRadius (pt 10)
-                ]
-                [ Html.Styled.Attributes.src "/assets/flags/fr.svg"
-                , onClick (LanguageClicked French)]
-                []
-            , styled img
-                [ height (if model.language == Swedish then pt 60 else pt 45)
-                , width (if model.language == Swedish then pt 80 else pt 60)
-                , marginRight (pt 20)
-                , borderRadius (pt 10)
-                ]
-                [ Html.Styled.Attributes.src "/assets/flags/se.svg"
-                , onClick (LanguageClicked Swedish)]
-                []
-            , styled img
-                [ height (if model.language == English then pt 60 else pt 45)
-                , width (if model.language == English then pt 80 else pt 60)
-                , marginRight (pt 20)
-                , borderRadius (pt 10)
-                ]
-                [ Html.Styled.Attributes.src "/assets/flags/gb.svg"
-                , onClick (LanguageClicked English)]
-                []
-            , styled img
-                [ height (if model.language == Spanish then pt 60 else pt 45)
-                , width (if model.language == Spanish then pt 80 else pt 60)
-                , marginRight (pt 0)
-                , borderRadius (pt 10)
-                ]
-                [ Html.Styled.Attributes.src "/assets/flags/es.svg"
-                , onClick (LanguageClicked Spanish)]
-                []
-            ]
+            ( allLanguages
+                |> List.map
+                    (\language -> styled img
+                        [ height (if model.language == language then pt 60 else pt 45)
+                        , width (if model.language == language then pt 80 else pt 60)
+                        , marginRight (pt 20)
+                        , borderRadius (pt 10)
+                        , lastChild
+                            [ marginRight (px 0)]
+                        ]
+                        [ Html.Styled.Attributes.src (getFlagPath language)
+                        , onClick (LanguageClicked language)]
+                        []
+                    )
+            )
         , styled div
             [ width (pct 50)
             , height (pct 100)
