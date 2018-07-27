@@ -29,6 +29,7 @@ init =
             , correctGuess = True
             , directionClickedTime = -1000
             , time = 0
+            , language = French
             }
 
         cmd =

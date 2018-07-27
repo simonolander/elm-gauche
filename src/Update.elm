@@ -30,6 +30,13 @@ update msg model =
             , generateDirection
             )
 
+        LanguageClicked language ->
+            ( { model
+              | language = language
+              }
+            , Cmd.none
+            )
+
         Tick diff ->
             ( { model
               | time = model.time + diff / 1000
