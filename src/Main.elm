@@ -25,6 +25,7 @@ init =
         model =
             { direction = Left
             , windowSize = Size 0 0
+            , correctGuess = True
             , directionClickedTime = -1000
             , time = 0
             }

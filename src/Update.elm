@@ -24,6 +24,7 @@ update msg model =
         DirectionClicked direction ->
             ( { model
               | directionClickedTime = model.time
+              , correctGuess = direction == model.direction
               }
             , generateDirection
             )

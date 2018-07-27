@@ -4,6 +4,7 @@ import Css exposing (..)
 import Css.Media
 import Html.Styled exposing (..)
 import Html.Styled.Events exposing (onClick)
+import Html.Styled.Attributes
 import Model exposing (..)
 
 view : Model -> Html Msg
@@ -40,14 +41,14 @@ view model =
                 , fontFamily monospace
                 ]
                 []
-                [ if model.time - model.directionClickedTime < 1
-                    then text ("✔")
+                [ if isWaiting model
+                    then text (if model.correctGuess then "✔" else "✘")
                     else text (toString model.direction)
                 ]
             , styled div
                 [ width (pct 80)
                 , height (pct 40)
-                , backgroundColor (hex "ffa0a0")
+--                , backgroundColor (hex "ffa0a0")
                 , displayFlex
                 , alignItems center
                 , justifyContent spaceBetween
@@ -60,7 +61,9 @@ view model =
                     , fontSize (vw 8)
 --                    , backgroundColor (hex "ffffa0")
                     ]
-                    [ onClick (DirectionClicked Left) ]
+                    [ onClick (DirectionClicked Left)
+                    , Html.Styled.Attributes.disabled (isWaiting model)
+                    ]
                     [ text "←" ]
                 , styled button
                     [ width (pct 40)
@@ -68,8 +71,15 @@ view model =
                     , fontSize (vw 8)
 --                    , backgroundColor (hex "ffffa0")
                     ]
-                    [ onClick (DirectionClicked Right) ]
+                    [ onClick (DirectionClicked Right)
+                    , Html.Styled.Attributes.disabled (isWaiting model)
+                    ]
                     [ text "→" ]
                 ]
             ]
         ]
+
+
+isWaiting : Model -> Bool
+isWaiting model =
+    model.time - model.directionClickedTime < 1
