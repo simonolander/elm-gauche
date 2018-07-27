@@ -37,7 +37,7 @@ view model =
                 , textAlign center
                 , justifyContent center
                 , alignItems center
-                , fontSize (vw 8)
+                , fontSize (vh 12)
                 , fontFamily monospace
                 ]
                 []
@@ -46,31 +46,19 @@ view model =
                     else text (toString model.direction)
                 ]
             , spacing
-            , styled div
-                [ width (pct 20)
-                , backgroundColor (hex "f0f0f0")
-                , borderRadius (px 20)
-                , displayFlex
-                , textAlign center
-                , justifyContent center
-                , alignItems center
-                , fontSize (vw 8)
-                , color
-                    (if isWaiting model
-                        then if model.correctGuess
-                            then hex "30a030"
-                            else hex "a03030"
-                        else hex "a0a0a0")
-                , fontFamily monospace
+            , styled img
+                [ width (pct 20) ]
+                [ Html.Styled.Attributes.src
+                    (
+                        if isWaiting model
+                        then (if model.correctGuess then "/assets/check.svg" else "/assets/minus.svg")
+                        else "/assets/question-mark.svg"
+                    )
                 ]
                 []
-                [ if isWaiting model
-                    then text (if model.correctGuess then "✔" else "✘")
-                    else text "?"
-                ]
             , spacing
             , styled div
-                [ width (pct 80)
+                [ width (pct 90)
                 , height (pct 40)
 --                , backgroundColor (hex "ffa0a0")
                 , displayFlex
@@ -80,28 +68,34 @@ view model =
                 ]
                 []
                 [ styled button
-                    [ width (pct 40)
+                    [ width (pct 45)
                     , height (pct 100)
-                    , fontSize (vw 8)
+                    , fontSize (vh 12)
+                    , borderStyle none
                     , borderRadius (px 20)
                     , boxShadow3 (px 7) (px 10) (hex "f0f0f0")
                     , borderColor (hex "a0a0f0")
                     , backgroundColor (hex "a0a0ff")
                     , color (rgba 255 255 255 0.6)
+                    , disabled [ backgroundColor (rgba 160 160 240 0.5) ]
+--                    , active [ backgroundColor (rgba 120 120 240 1.0) ]
                     ]
                     [ onClick (DirectionClicked Left)
                     , Html.Styled.Attributes.disabled (isWaiting model)
                     ]
                     [ text "←" ]
                 , styled button
-                    [ width (pct 40)
+                    [ width (pct 45)
                     , height (pct 100)
-                    , fontSize (vw 8)
+                    , fontSize (vh 12)
+                    , borderStyle none
                     , borderRadius (px 20)
                     , boxShadow3 (px 7) (px 10) (hex "f0f0f0")
                     , borderColor (hex "f0a0a0")
                     , backgroundColor (hex "ffa0a0")
                     , color (rgba 255 255 255 0.6)
+                    , disabled [ backgroundColor (rgba 240 160 160 0.5) ]
+--                    , active [ backgroundColor (rgba 240 120 120 1.0) ]
                     ]
                     [ onClick (DirectionClicked Right)
                     , Html.Styled.Attributes.disabled (isWaiting model)
