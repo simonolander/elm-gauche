@@ -102,7 +102,6 @@ view model =
                     , borderStyle none
                     , borderRadius (px 20)
                     , boxShadow3 (px 7) (px 10) (hex "f0f0f0")
-                    , borderColor (hex "a0a0f0")
                     , backgroundColor (hex "a0a0ff")
                     , color (rgba 255 255 255 0.6)
                     , disabled [ backgroundColor (rgba 160 160 240 0.5) ]
@@ -118,8 +117,7 @@ view model =
                     , borderStyle none
                     , borderRadius (px 20)
                     , boxShadow3 (px 7) (px 10) (hex "f0f0f0")
-                    , borderColor (hex "f0a0a0")
-                    , backgroundColor (hex "ffa0a0")
+                    , backgroundColor (hex "ff9c85")
                     , color (rgba 255 255 255 0.6)
                     , disabled [ backgroundColor (rgba 240 160 160 0.5) ]
                     ]
