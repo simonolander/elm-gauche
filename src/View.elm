@@ -12,7 +12,6 @@ view : Model -> Html Msg
 view model =
     styled div
         [ height (px ( toFloat model.windowSize.height) )
---        , backgroundColor (hex "a0a0a0")
         , displayFlex
         , alignItems center
         , justifyContent center
@@ -47,7 +46,6 @@ view model =
         , styled div
             [ width (pct 50)
             , height (pct 100)
---            , backgroundColor (hex "a0a0ff")
             , displayFlex
             , alignItems center
             , justifyContent center
@@ -59,7 +57,6 @@ view model =
             []
             [ styled div
                 [ width (pct 80)
---                , backgroundColor (hex "a0ffa0")
                 , displayFlex
                 , textAlign center
                 , justifyContent center
@@ -87,7 +84,6 @@ view model =
             , styled div
                 [ width (pct 90)
                 , height (pct 40)
---                , backgroundColor (hex "ffa0a0")
                 , displayFlex
                 , alignItems center
                 , justifyContent spaceBetween
@@ -105,7 +101,6 @@ view model =
                     , backgroundColor (hex "a0a0ff")
                     , color (rgba 255 255 255 0.6)
                     , disabled [ backgroundColor (rgba 160 160 240 0.5) ]
---                    , active [ backgroundColor (rgba 120 120 240 1.0) ]
                     ]
                     [ onClick (DirectionClicked Left)
                     , Html.Styled.Attributes.disabled (isWaiting model)
@@ -122,7 +117,6 @@ view model =
                     , backgroundColor (hex "ffa0a0")
                     , color (rgba 255 255 255 0.6)
                     , disabled [ backgroundColor (rgba 240 160 160 0.5) ]
---                    , active [ backgroundColor (rgba 240 120 120 1.0) ]
                     ]
                     [ onClick (DirectionClicked Right)
                     , Html.Styled.Attributes.disabled (isWaiting model)
