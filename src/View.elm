@@ -8,6 +8,7 @@ import Html.Styled.Attributes
 import Model exposing (..)
 import Translation exposing (..)
 
+
 view : Model -> Html Msg
 view model =
     styled div
@@ -30,7 +31,7 @@ view model =
             []
             ( allLanguages
                 |> List.map
-                    (\language -> styled img
+                    ( \language -> styled img
                         [ height (if model.language == language then pt 60 else pt 45)
                         , width (if model.language == language then pt 80 else pt 60)
                         , marginRight (pt 20)
@@ -63,6 +64,8 @@ view model =
                 , alignItems center
                 , fontSize (vh 10)
                 , fontFamily monospace
+                , opacity (num <| getOpacity model)
+                , marginLeft (pct <| getMarginLeft model)
                 ]
                 []
                 [ if isWaiting model
@@ -150,12 +153,57 @@ view model =
 
 spacing =
     styled div
-        [ height (pct 5)
-        ]
+        [ height (pct 5) ]
         []
         []
+
+
+waitingTime = 0.5
 
 
 isWaiting : Model -> Bool
 isWaiting model =
-    model.time - model.directionClickedTime < 1
+    model.time - model.directionClickedTime < waitingTime
+
+
+getOpacity : Model -> Float
+getOpacity model =
+    getT model |> sin
+
+
+getT : Model -> Float
+getT model =
+    let
+        dt =
+            model.time - model.directionClickedTime
+    in
+        if dt < waitingTime
+        then
+            (waitingTime - dt) / waitingTime
+        else if dt < waitingTime * 1.5
+        then
+            (dt - waitingTime) * 2 / waitingTime
+        else
+            1
+
+getMarginLeft : Model -> Float
+getMarginLeft model =
+    let
+        dt =
+            model.time - model.directionClickedTime
+        t =
+            if dt < waitingTime
+            then
+                (waitingTime - dt) / waitingTime
+            else
+                1
+
+        margin =
+            sin ((1 - t) * pi / 2) * 150
+
+        modifier =
+            case model.lastDirection of
+                Left -> -1
+                Right -> 1
+    in
+        margin * modifier
