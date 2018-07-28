@@ -130,6 +130,27 @@ view model =
                     [ text "→" ]
                 ]
             ]
+        , styled div
+            [ position absolute
+            , right (px 20)
+            , bottom (px 20)
+            , fontFamily monospace
+            , textAlign right
+            , color (rgba 0 0 0 0.75)
+            ]
+            []
+            [ styled span
+                [ display block ]
+                []
+                [text "@ Simon Olander Sahlén"]
+            , styled span
+                [ display block ]
+                []
+                [text "@ Anita Chainiau"]
+            , a
+                [ Html.Styled.Attributes.href "https://github.com/simonolander/elm-gauche" ]
+                [ text "Source code" ]
+            ]
         ]
 
 
