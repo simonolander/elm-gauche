@@ -12,7 +12,8 @@ import Translation exposing (..)
 view : Model -> Html Msg
 view model =
     styled div
-        [ height (px ( toFloat model.windowSize.height) )
+        [ width (px ( toFloat model.windowSize.width) )
+        , height (px ( toFloat model.windowSize.height) )
         , displayFlex
         , alignItems center
         , justifyContent center
@@ -51,6 +52,7 @@ view model =
             , alignItems center
             , justifyContent center
             , flexDirection column
+            , overflowX hidden
             , Css.Media.withMedia
                 [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth (px 1000) ] ]
                 [ width (pct 100) ]
