@@ -145,7 +145,7 @@ view model =
                     , borderStyle none
                     , borderRadius (px 20)
                     , boxShadow3 (px 7) (px 10) (hex "f0f0f0")
-                    , backgroundColor (hex "ff9c85")
+                    , backgroundColor (hex "ffb0a0")
                     , color (rgba 255 255 255 0.6)
                     , disabled [ backgroundColor (rgba 240 160 160 0.5) ]
                     ]
