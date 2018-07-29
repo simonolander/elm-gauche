@@ -58,7 +58,6 @@ view model =
                             , width (if model.language == language then pt 80 else pt 60)
                             , marginRight (pt 20)
                             , borderRadius (pt 10)
---                            , lastChild [ marginRight (px 0)]
                             ]
                             [ Html.Styled.Attributes.src (getFlagPath language)
                             , onClick (LanguageClicked language)
