@@ -30,6 +30,7 @@ init =
             , directionClickedTime = -1000
             , time = 0
             , language = French
+            , muted = True
             }
 
         cmd =

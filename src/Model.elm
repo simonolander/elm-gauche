@@ -15,6 +15,11 @@ type Direction =
     Left
     | Right
 
+type alias PlaySoundPayload =
+    { filepath: String
+    , timeout: Time
+    }
+
 type alias Model =
     { direction: Direction
     , lastDirection: Direction
@@ -23,6 +28,7 @@ type alias Model =
     , language: Language
     , directionClickedTime: Time
     , time: Time
+    , muted: Bool
     }
 
 type Msg =
@@ -31,3 +37,5 @@ type Msg =
     | Resize Size
     | DirectionClicked Direction
     | LanguageClicked Language
+    | MutedClicked Bool
+    | PlaySoundClicked PlaySoundPayload

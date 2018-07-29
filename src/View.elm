@@ -26,26 +26,47 @@ view model =
             , height (pt 80)
             , displayFlex
             , flexDirection row
-            , alignItems center
-            , marginLeft auto
-            , justifyContent center
+            , justifyContent spaceBetween
             ]
             []
-            ( allLanguages
-                |> List.map
-                    ( \language -> styled img
-                        [ height (if model.language == language then pt 60 else pt 45)
-                        , width (if model.language == language then pt 80 else pt 60)
-                        , marginRight (pt 20)
-                        , borderRadius (pt 10)
-                        , lastChild
-                            [ marginRight (px 0)]
-                        ]
-                        [ Html.Styled.Attributes.src (getFlagPath language)
-                        , onClick (LanguageClicked language)]
-                        []
+            [ styled img
+                [ height (pt 45)
+                , width (pt 45)
+                , alignSelf center
+                , marginLeft (pt 20)
+                ]
+                [ Html.Styled.Attributes.src
+                    ( if model.muted
+                        then "/assets/muted.svg"
+                        else "/assets/unmuted.svg"
                     )
-            )
+                , onClick (MutedClicked (not model.muted))
+                ]
+                []
+            , styled div
+                [ height (pt 80)
+                , displayFlex
+                , flexDirection row
+                , alignItems center
+                , alignSelf center
+                , justifyContent center]
+                []
+                ( allLanguages
+                    |> List.map
+                        ( \language -> styled img
+                            [ height (if model.language == language then pt 60 else pt 45)
+                            , width (if model.language == language then pt 80 else pt 60)
+                            , marginRight (pt 20)
+                            , borderRadius (pt 10)
+--                            , lastChild [ marginRight (px 0)]
+                            ]
+                            [ Html.Styled.Attributes.src (getFlagPath language)
+                            , onClick (LanguageClicked language)
+                            ]
+                            []
+                        )
+                )
+            ]
         , styled div
             [ width (pct 50)
             , height (pct 100)
@@ -83,6 +104,12 @@ view model =
                         if isWaiting model
                         then (if model.correctGuess then "/assets/check.svg" else "/assets/minus.svg")
                         else "/assets/question-mark.svg"
+                    )
+                , onClick
+                    ( PlaySoundClicked
+                        { filepath = getDirectionSoundPath model.language model.direction
+                        , timeout = 0
+                        }
                     )
                 ]
                 []

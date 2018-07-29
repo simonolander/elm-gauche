@@ -15,10 +15,14 @@ update msg model =
               | direction = direction
               , lastDirection = model.direction
               }
-            , SoundPort.playSound
-                { timeout = waitingTime
-                , filepath = getDirectionSoundPath model.language direction
-                }
+            , if model.muted
+                then
+                    Cmd.none
+                else
+                    SoundPort.playSound
+                        { timeout = waitingTime
+                        , filepath = getDirectionSoundPath model.language direction
+                        }
             )
 
         Resize size ->
@@ -41,6 +45,22 @@ update msg model =
               | language = language
               }
             , Cmd.none
+            )
+
+        MutedClicked muted ->
+            ( { model
+              | muted = muted
+              }
+            , Cmd.none
+            )
+
+        PlaySoundClicked playSoundPayload ->
+            ( model
+            , if model.muted
+                then
+                    Cmd.none
+                else
+                    SoundPort.playSound playSoundPayload
             )
 
         Tick diff ->
