@@ -3,6 +3,7 @@ module Translation exposing (..)
 import Model exposing (..)
 
 
+translateDirection : Language -> Direction -> String
 translateDirection language direction =
     case language of
         English ->
@@ -31,6 +32,7 @@ translateDirection language direction =
                     "Derecha"
 
 
+getFlagPath : Language -> String
 getFlagPath language =
     case language of
         English ->
@@ -72,6 +74,7 @@ getDirectionSoundPath language direction =
                     "/assets/sound/es_right_01.m4a"
 
 
+allLanguages : List Language
 allLanguages =
     [ French
     , Swedish
