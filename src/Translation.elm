@@ -43,6 +43,35 @@ getFlagPath language =
             "/assets/flags/es.svg"
 
 
+getDirectionSoundPath : Language -> Direction -> String
+getDirectionSoundPath language direction =
+    case language of
+        English ->
+            case direction of
+                Left ->
+                    "/assets/sound/en_left_01.m4a"
+                Right ->
+                    "/assets/sound/en_right_01.m4a"
+        Swedish ->
+            case direction of
+                Left ->
+                    "/assets/sound/se_left_01.m4a"
+                Right ->
+                    "/assets/sound/se_right_01.m4a"
+        French ->
+            case direction of
+                Left ->
+                    "/assets/sound/fr_left_01.m4a"
+                Right ->
+                    "/assets/sound/fr_right_01.m4a"
+        Spanish ->
+            case direction of
+                Left ->
+                    "/assets/sound/es_left_01.m4a"
+                Right ->
+                    "/assets/sound/es_right_01.m4a"
+
+
 allLanguages =
     [ French
     , Swedish

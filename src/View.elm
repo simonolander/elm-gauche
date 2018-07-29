@@ -1,5 +1,6 @@
 module View exposing (view)
 
+import Constants exposing (waitingTime)
 import Css exposing (..)
 import Css.Media
 import Html.Styled exposing (..)
@@ -151,14 +152,12 @@ view model =
         ]
 
 
+spacing : Html msg
 spacing =
     styled div
         [ height (pct 5) ]
         []
         []
-
-
-waitingTime = 0.5
 
 
 isWaiting : Model -> Bool

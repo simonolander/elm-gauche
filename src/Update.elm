@@ -1,7 +1,10 @@
 module Update exposing (..)
 
+import Constants exposing (waitingTime)
 import Event exposing (generateDirection)
 import Model exposing (..)
+import SoundPort
+import Translation exposing (getDirectionSoundPath)
 
 
 update : Msg -> Model -> (Model, Cmd Msg)
@@ -12,7 +15,10 @@ update msg model =
               | direction = direction
               , lastDirection = model.direction
               }
-            , Cmd.none
+            , SoundPort.playSound
+                { timeout = waitingTime
+                , filepath = getDirectionSoundPath model.language direction
+                }
             )
 
         Resize size ->

@@ -13,11 +13,14 @@
         font-family: calibri, helvetica, arial, sans-serif;
       }
     </style>
-    <script src="elm.js"></script>
+    <script type="text/javascript" src="elm.js"></script>
+    <script type="text/javascript" src="src/Ports/Sound.js"></script>
   </head>
   <body>
     <script type="text/javascript">
-      Elm.Main.fullscreen();
+      var elmApp = Elm.Main.fullscreen();
+
+      playSoundPort(elmApp);
     </script>
   </body>
   <!--Preload images-->
@@ -30,5 +33,8 @@
     <img src="/assets/favicon.ico" width="1" height="1" />
     <img src="/assets/minus.svg" width="1" height="1" />
     <img src="/assets/question-mark.svg" width="1" height="1" />
+
+    <audio src="/assets/sound/se_left_01.m4a" muted preload="auto"/>
+    <audio src="/assets/sound/se_right_01.m4a" muted preload="auto"/>
   </div>
 </html>
